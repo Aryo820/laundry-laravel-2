@@ -18,10 +18,11 @@
                             <th>Status</th>
                             <th>Aksi</th>
                         </tr>
+                        {{-- @dd($datas) --}}
                         @foreach ($datas as $index => $data)
                             <tr>
                                 <td>{{ $index += 1 }}</td>
-                                <td>{{ $data->order_code }}</td>
+                                <td><a href="">{{ $data->order_code }}</a></td>
                                 <td>{{ $data->customer->name }}</td>
                                 <td>{{ $data->order_end_date }}</td>
                                 <td>{{ $data->status_text }}</td>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customers;
+use App\Models\TransDetails;
 use App\Models\TransOrders;
 use App\Models\TypeOfServices;
 use Illuminate\Http\Request;
@@ -44,7 +45,28 @@ class TransOrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'order_end_date' => 'required'
+        ]);
+        
+        $transOrder = TransOrders::create([
+            'id_customer' => $request->id_customer,
+            'order_code' => $request->order_code,
+            'order_end_date' => $request->order_end_date,
+            'total' => $request->grand_total
+        ]);
+
+        foreach ($request->id_product as $key => $idProduct) {
+            $id_trans = $transOrder->id;
+            TransDetails::create([
+                'id_trans' => $id_trans,
+                'id_service' => $idProduct,
+                'qty' => $request->qty[$key],
+                'subtotal' => $request->total[$key]
+            ]);
+        }
+
+        return redirect()->route('trans.index')->with('status', 'Berhasil');
     }
 
     /**

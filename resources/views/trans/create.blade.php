@@ -14,7 +14,6 @@
                                 <label for="" class="form-label">No Pesanan</label>
                                 <input type="text" class="form-control" name="order_code" readonly
                                     value="{{ $orderCode ?? '' }}">
-
                                 <div class="mt-3 mb-3">
                                     <label for="" class="form-label">Pelanggan</label>
                                     <select name="id_customer" id="" class="form-control">
@@ -33,6 +32,10 @@
                                                 {{ $service->service_name }}</option>
                                         @endforeach
                                     </select>
+                                </div>
+                                <div class="mt-3 mb-3">
+                                    <label for="" class="form-label">End Order</label>
+                                    <input type="date" name="order_end_date" class="form-control">
                                 </div>
 
                                 <label for="" class="form-label">Catatan</label>
@@ -56,12 +59,9 @@
                                 </thead>
                                 <tbody></tbody>
                             </table>
+                            <p><strong>Grand Total: Rp. <span id="grandTotal">0</span></strong></p>
+                            <input type="number" name="grand_total" id="grandTotalInput" value="0">
                         </div>
-
-
-
-
-
                         <button type="submit" class="btn btn-primary mt-2">Simpan</button>
                         <a href="{{ url()->previous() }}" class="btn btn-secondary mt-2">Kembali</a>
                     </form>

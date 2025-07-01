@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TransOrders extends Model
 {
-    protected $fillable = ['id_customer', 'order_end_date', 'order_status', 'order_code', 'order_pay', 'order_change'];
+    protected $fillable = ['id_customer', 'order_end_date', 'order_status', 'order_code', 'order_pay', 'order_change', 'total'];
 
     // relation : ORM (OBJECT RELATION MAPPING)
     // LEFTJOIN
