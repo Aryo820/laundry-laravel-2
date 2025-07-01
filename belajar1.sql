@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Jun 2025 pada 07.49
+-- Waktu pembuatan: 25 Jun 2025 pada 10.38
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -67,8 +67,8 @@ CREATE TABLE `counts` (
 --
 
 INSERT INTO `counts` (`id`, `jenis`, `angka1`, `angka2`, `hasil`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(3, 'tambah', 12.50, 1.00, 13.50, '2025-06-22 21:01:40', '2025-06-22 21:01:40', NULL),
-(4, 'tambah', 1.00, 2.00, 3.00, '2025-06-22 21:04:35', '2025-06-22 21:04:35', NULL);
+(3, 'tambah', 12.50, 1.10, 13.60, '2025-06-22 21:01:40', '2025-06-23 01:33:17', NULL),
+(4, 'tambah', 2.00, 5.00, 7.00, '2025-06-22 21:04:35', '2025-06-23 00:30:43', NULL);
 
 -- --------------------------------------------------------
 
@@ -141,7 +141,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '0001_01_01_000000_create_users_table', 1),
 (2, '0001_01_01_000001_create_cache_table', 1),
 (3, '0001_01_01_000002_create_jobs_table', 1),
-(5, '2025_06_23_022059_create_counts_table', 2);
+(5, '2025_06_23_022059_create_counts_table', 2),
+(6, '2025_06_25_063805_create_services_table', 3);
 
 -- --------------------------------------------------------
 
@@ -175,7 +176,24 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('1dqVUVJeRJgK1mogsdSTVrbguFhflLPnA6qndybv', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiSDVqb01YaHVGVkZNb1V1MzkxZWdjTHd3ak1KemxwSEdwaE5RMTk4SyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMS9lZGl0L2RhdGEtaGl0dW5nL3RhbWJhaC8zIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1750656694);
+('H12vAsuBVP5Phaomyz56v8DIfSNTUpVle5h10XVA', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiRnlvaUpzeHljd2o3anZpZllHY2hCcmRVRVNCUnNrelNsUVBDMjlUZyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6MzE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9kYXNoYm9hcmQiO319', 1750827834),
+('oCSb2LBylyCKWd6h5GKB65oHQZ9dwzw2Ge60TeOw', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiUkMyNDVXQ3ZzcWtRcE5VNUxXV2s3UFB0azV6aVk4bUZlTjgyZlhXeiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1750840306);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `type_of_services`
+--
+
+CREATE TABLE `type_of_services` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `service_name` varchar(35) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -193,6 +211,13 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'admin@gmail.com', NULL, '$2y$12$w0V3SNB3tYx8XHOdKJ1q8uD6cxREu8M1457KGSanZbfg1X/tx/usO', NULL, '2025-06-24 20:47:24', '2025-06-24 20:47:24');
 
 --
 -- Indexes for dumped tables
@@ -257,6 +282,12 @@ ALTER TABLE `sessions`
   ADD KEY `sessions_last_activity_index` (`last_activity`);
 
 --
+-- Indeks untuk tabel `type_of_services`
+--
+ALTER TABLE `type_of_services`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
@@ -289,13 +320,19 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT untuk tabel `type_of_services`
+--
+ALTER TABLE `type_of_services`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

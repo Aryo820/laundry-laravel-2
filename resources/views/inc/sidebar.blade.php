@@ -20,6 +20,16 @@
                          <i class="bi bi-circle"></i><span>Services</span>
                      </a>
                  </li>
+                 <li>
+                     <a href="{{ route('customer.index') }}">
+                         <i class="bi bi-circle"></i><span>Pelanggan</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="{{ route('level.index') }}">
+                         <i class="bi bi-circle"></i><span>Level</span>
+                     </a>
+                 </li>
                  {{-- <li>
                      <a href="components-accordion.html">
                          <i class="bi bi-circle"></i><span>Accordion</span>

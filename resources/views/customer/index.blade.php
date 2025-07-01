@@ -6,31 +6,32 @@
                 <div class="card-body">
                     <h3 class="card-title">{{ $title }}</h3>
                     <div class="mb-3" align="right">
-                        <a href="{{ route('service.create') }}" class="btn btn-success">Tambah</a>
+                        <a href="{{ route('customer.create') }}" class="btn btn-success">Tambah</a>
 
                     </div>
                     <table class="table table-bordered">
                         <tr>
                             <th>No</th>
-                            <th>Nama Service</th>
-                            <th>Harga</th>
-                            <th>Deskripsi</th>
+                            <th>Nama </th>
+                            <th>Telp</th>
+                            <th>Alamat</th>
                             <th>Aksi</th>
                         </tr>
                         @foreach ($datas as $index => $data)
                             <tr>
                                 <td>{{ $index += 1 }}</td>
-                                <td>{{ $data->service_name }}</td>
-                                <td>{{ number_format($data->price) }}</td>
-                                <td>{{ $data->description }}</td>
+                                <td>{{ $data->name }}</td>
+                                <td>{{ $data->phone }}</td>
+                                <td>{{ $data->address }}</td>
                                 <td>
-                                    <a href="{{ route('service.edit', $data->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                    <form action="{{ route('service.destroy', $data->id) }}" method="post"
+                                    <a href="{{ route('customer.edit', $data->id) }}"
+                                        class="btn btn-primary btn-sm">Edit</a>
+                                    <form action="{{ route('customer.destroy', $data->id) }}" method="post"
                                         style="display: inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" onclick="return confirm('Yakin ingin Delete ?')"
-                                            class="btn btn-danger">Delete</button>
+                                            class="btn btn-danger btn-sm">Delete</button>
                                     </form>
                                 </td>
                             </tr>
