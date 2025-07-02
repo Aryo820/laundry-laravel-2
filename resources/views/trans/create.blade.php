@@ -60,7 +60,7 @@
                                 <tbody></tbody>
                             </table>
                             <p><strong>Grand Total: Rp. <span id="grandTotal">0</span></strong></p>
-                            <input type="number" name="grand_total" id="grandTotalInput" value="0">
+                            <input type="hidden" name="grand_total" id="grandTotalInput" value="0" step="any">
                         </div>
                         <button type="submit" class="btn btn-primary mt-2">Simpan</button>
                         <a href="{{ url()->previous() }}" class="btn btn-secondary mt-2">Kembali</a>
