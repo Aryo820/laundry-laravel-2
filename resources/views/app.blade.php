@@ -164,16 +164,56 @@
 
     <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
         data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
+
     <script>
-        snap.pay('{{ $snapToken }}', {
-            onSuccess: function(result) {
-                // window.location.href = "/midtrans/finish?order_id={{ $order_id }}";
-            },
-            onPending: function(result) {
-                alert("Silakan selesaikan pembayaran.");
-            },
-            onError: function(result) {
-                alert("Pembayaran gagal.");
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const form = e.target;
+            const method = form.querySelector('[name="payment_method"]:checked, [name="payment_method"]:focus')
+                ?.value;
+
+            const data = {
+                order_pay: document.getElementById('order_pay').value,
+                order_change: document.getElementById('order_change').value,
+                payment_method: method,
+                _token: '{{ csrf_token() }}'
+            };
+
+            const orderId = form.dataset.orderId;
+
+            if (method === 'cash') {
+                // Submit biasa untuk pembayaran cash
+                form.submit();
+            } else {
+                // Kirim ke route Laravel untuk generate snap token
+                fetch(`/trans/${orderId}/snap`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': data._token
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(res => res.json())
+                    .then(res => {
+                        if (res.token) {
+                            snap.pay(res.token, {
+                                onSuccess: function(result) {
+                                    
+                                    window.location.href = `trans`;
+                                },
+                                onPending: function(result) {
+                                    alert("Silakan selesaikan pembayaran Anda.");
+                                },
+                                onError: function(result) {
+                                    alert("Gagal.");
+                                }
+                            });
+                        } else {
+                            alert("Gagal ambil token pembayaran");
+                        }
+                    });
             }
         });
     </script>

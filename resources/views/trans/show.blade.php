@@ -53,7 +53,8 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title">Transaksi Order Detail</h3>
-                    <form action="" method="post">
+                    <form action="{{ route('trans.update', $details->id) }}" method="post" id="paymentForm"
+                        data-order-id="{{ $details->id }}">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -103,8 +104,10 @@
                         </table>
 
                         <div class="mt-3">
-                            <button class="btn btn-primary" name="cash">Bayar Cash</button>
-                            <button class="btn btn-success" name="cashless">Cashless</button>
+                            <button class="btn btn-primary" type="submit" name="payment_method" value="cash">Bayar
+                                Cash</button>
+                            <button class="btn btn-success" type="submit" name="payment_method"
+                                value="midtrans">Cashless</button>
                         </div>
                     </form>
                 </div>
