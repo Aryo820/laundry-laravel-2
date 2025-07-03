@@ -16,6 +16,12 @@ class ApiController extends Controller
         return response()->json(['data' => $users]);
     }
 
+    public function editUser($id)
+    {
+        $user = User::findOrFail($id);
+        return response()->json(['status' => 'success', 'message' => 'Request success', 'data' => $user]);
+    }
+
     public function storeUser(Request $request)
     {
 
@@ -62,6 +68,17 @@ class ApiController extends Controller
             return response()->json(['status' => 'success', 'message' => 'Request Update Success', 'data' => $user]);
         } catch (\Throwable $th) {
             return response()->json(['status' => 'error', 'message' => 'Request Failed', 'error' => $th->getMessage()], 500);
+        }
+    }
+
+    public function deleteUser($id)
+    {
+        try {
+            $user = User::findOrFail($id);
+            $user->delete();
+            return response()->json(['status' => 'success', 'message' => 'Request Delete Success']);
+        } catch (\Throwable $th) {
+            return response()->json(['status' => 'error', 'message' => 'Request failed', 'error' => $th->getMessage()], 500);
         }
     }
 }

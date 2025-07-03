@@ -16,5 +16,9 @@ Route::get('/', function () {
 });
 
 Route::get('user', [App\Http\Controllers\API\ApiController::class, 'getUsers']);
+Route::get('user/{id}', [App\Http\Controllers\API\ApiController::class, 'editUser']);
 Route::post('user', [App\Http\Controllers\API\ApiController::class, 'storeUser']);
 Route::put('user/{id}', [App\Http\Controllers\API\ApiController::class, 'updateUser']);
+Route::delete('user/{id}', [App\Http\Controllers\API\ApiController::class, 'deleteUser']);
+
+// Route::apiResource()
