@@ -124,7 +124,27 @@ class TransOrderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //logika yang isinya mengupdate data dari table trans_order
+        // ⬇⬇⬇ LOGIKA YANG DIMINTA DITAMBAHKAN DI SINI ⬇⬇⬇
+
+        // 1. Cari transaksi berdasarkan ID
+        $transaksi = TransOrders::findOrFail($id);
+
+        // 2. Siapkan data dari form
+        $dataToUpdate = [
+            'order_pay' => $request->order_pay,
+            'order_change' => $request->order_change,
+        ];
+
+        // 3. Jika metode pembayaran adalah 'cash', ubah status pesanan
+        if ($request->payment_method === 'cash') {
+            $dataToUpdate['order_status'] = '1'; // Mengubah status menjadi 'Sudah Bayar'
+        }
+
+        // 4. Lakukan update
+        $transaksi->update($dataToUpdate);
+
+        // 5. Alihkan kembali ke halaman index dengan pesan sukses
+        return redirect()->route('trans.index')->with('status', 'Pembayaran berhasil, status telah diupdate.');
     }
 
     /**

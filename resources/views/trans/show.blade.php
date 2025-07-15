@@ -55,6 +55,13 @@
                     <h3 class="card-title">Transaksi Order Detail</h3>
                     <form action="{{ route('trans.update', $details->id) }}" method="post" id="paymentForm"
                         data-order-id="{{ $details->id }}">
+
+                        {{-- ====================================================== --}}
+                        {{-- PERBAIKAN DITAMBAHKAN DI SINI --}}
+                        @csrf
+                        @method('put')
+                        {{-- ====================================================== --}}
+
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -106,8 +113,8 @@
                         <div class="mt-3">
                             <button class="btn btn-primary" type="submit" name="payment_method" value="cash">Bayar
                                 Cash</button>
-                            {{-- <button class="btn btn-success" type="submit" name="payment_method"
-                                value="midtrans">Cashless</button> --}}
+                            <button class="btn btn-success" type="submit" name="payment_method"
+                                value="">Cashless</button>
                         </div>
                     </form>
                 </div>

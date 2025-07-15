@@ -24,11 +24,19 @@
                                 <td>{{ $index += 1 }}</td>
                                 <td><a href="{{ route('trans.show', $data->id) }}">{{ $data->order_code }}</a></td>
                                 <td>{{ $data->customer->name }}</td>
-                                <td>{{ $data->order_end_date }}</td>
-                                <td>{{ $data->status_text }}</td>
+                                <td>{{ date('d F Y', strtotime($data->order_end_date)) }}</td>
                                 <td>
-                                    <a href="{{ route('print_struk', $data->id) }}" class="btn btn-warning btn-sm">Print</a>
-                                    <a href="{{ route('trans.show', $data->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                    {{-- ====================================================== --}}
+                                    {{-- PERBAIKAN UTAMA ADA DI SINI --}}
+                                    {{-- Kode diubah untuk menampilkan teks status dengan warna --}}
+                                    <span class=" {{ $data->order_status == '1' }}">
+                                        {{ $data->status_text }}
+                                    </span>
+                                    {{-- ====================================================== --}}
+                                </td>
+                                <td>
+                                    <a href="{{ route('trans.print', $data->id) }}" class="btn btn-warning btn-sm" target="_blank">Print</a>
+                                    <a href="{{ route('trans.show', $data->id) }}" class="btn btn-primary btn-sm">Bayar</a>
                                     <form action="{{ route('trans.destroy', $data->id) }}" method="post"
                                         style="display: inline">
                                         @csrf

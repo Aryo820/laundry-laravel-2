@@ -24,12 +24,14 @@ class TransOrders extends Model
     public function getStatusTextAttribute()
     {
         switch ($this->order_status) {
-            case '1':
-                return "Sudah Bayar";
+            case '0':
+                return "Belum Lunas";
                 break;
-
+            case '1':
+                return "Lunas";
+                break;
             default:
-                return "Baru";
+            return "error";
                 break;
         }
     }
