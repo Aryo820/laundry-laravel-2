@@ -106,8 +106,8 @@
                         <div class="mt-3">
                             <button class="btn btn-primary" type="submit" name="payment_method" value="cash">Bayar
                                 Cash</button>
-                            <button class="btn btn-success" type="submit" name="payment_method"
-                                value="midtrans">Cashless</button>
+                            {{-- <button class="btn btn-success" type="submit" name="payment_method"
+                                value="midtrans">Cashless</button> --}}
                         </div>
                     </form>
                 </div>
